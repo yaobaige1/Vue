@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/vue.js"></script>
+</head>
+
+<body>
+<!--
+    都是得保证元素是响应式才行
+    
+Vue 的 数组 不能自动监控成响应式
+    如果要把数组变成成响应式 就要使用
+    1.push() 追加元素到数组结尾
+    2.unshift() 追加元素到数组开头
+    3.pop() 删除倒数第一个元素
+    4.shift() 删除第一个元素
+    5.splice() 替换元素 用法： splice(替换第几个数组,1表示替换、0表示不替换,替换的内容)
+        用Vue.set(路径,'元素名',元素值) 进行替换   也可以追加   
+
+    6.sort() 数组排序函数 sort是一个排序函数，可以对列表、字典、元组等进行排序。它的语法格式如下：
+            list.sort(key=None, reverse=False)，其中，key参数用于指定根据哪个关键字进行排序，
+            reverse参数用于指定排序规则，如果reverse=True，则是降序排序，如果reverse=False，则是升序排序。
+
+    7.reverse()  颠倒数组 
+
+    普通数组的数组方法  和 Vue的数组 方法不一样  Vue的 在普通数组方法的基础上 添加了响应式变化的功能
+-->
+    <div id="root">
+        <ul>
+            <li v-for="(item, index) in info" :key="index">
+                名字：{{item.name}} </br>
+                年龄：{{item.age}} </br>
+            </li>
+            我是第一个被删除的元素：{{shift}} </br>
+            我是最后一个被删的元素：{{pop}} </br>
+
+            <button @click="shift1">删除数组的第一个元素，并返回该元素</button></br>
+            <button @click="pop1">删除数组的最后一个元素，并返回该元素</button></br>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                info: [{ name: '李四', age: 18 }, { name: '马牛逼', age: 22 }, { name: '张三', age: 25 }],
+                shift: ''
+            },
+            methods: {
+                shift1() {
+                    console.log("aa");
+                    let shift = this.info.shift()
+                    console.log(shift);
+                    this.shift = shift
+                },
+                pop1() {
+                    console.log("bb");
+                    let pop = this.info.pop()
+                    this.pop = pop
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

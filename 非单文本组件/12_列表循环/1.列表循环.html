@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/vue.js"></script>
+</head>
+<body>
+    <!--
+         v-for指令
+        1.用户展示列表数据
+        2.语法：v-for="(item,index) in xxx" :key="index"
+        3.可遍历：数组、对象、字符串、指定次数
+     -->
+    <div id="root">
+        <ul>
+            <!-- 循环数组对接 -->
+            <li v-for="(item,index) in peopleList" :key="index">
+                {{index}}--{{item.name}}--{{item.age}}
+            </li>
+        </ul>
+        <ul>
+            <!-- 循环对象 -->
+            <li v-for="(value,k) in myObj" :key="k">
+                {{k}}--{{value}}
+            </li>
+        </ul>
+        <ul>
+            循环字符串
+            <li v-for="(item,index) in str" :key="index">
+                {{index}}--{{item}}
+            </li>
+        </ul>
+        <ul>
+            <!-- 循环数字 -->
+            <li v-for="(item,index) in 6">
+                {{index}}--{{item}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                peopleList:[
+                    {
+                        name:'李四',
+                        age:18
+                    },
+                    {
+                        name:'张三',
+                        age:16
+                    },
+                    {
+                        name:'王五',
+                        age:19
+                    }
+                ],
+                myObj:{
+                name:'胡哇',
+                age:99,
+                class:'计算机211'
+            },
+            str:'computer'
+            },
+           
+        })
+    </script>
+</body>
+</html>

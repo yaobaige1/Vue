@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/vue.js"></script>
+</head>
+<!-- 
+    条件渲染：
+    1.v-if 写法：
+        （1）v-if = "表达式"
+        （2）v-else-if = "表达式"
+        （3）v-else 
+     适用于：切换频率较低的场景。
+     特点：不展示的DOM元素直接被移除。
+     注意：v-if可以和：v-else-if、v-else 一起使用，但要求结构不能被“打断”。
+
+    2.v-show
+        写法：v-show="表达式"
+        使用于：切换频率较高的场景。
+        特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
+
+    3.备注：使用v-if时，元素可以无法取到，面对v-show 一定可以获取掉 
+-->
+
+<body>
+    <div id="root">
+        <!-- 保留占位 -->
+        <h3 v-show="isShow">我是{{name}}</h3>
+        <!-- 不保留占位 -->
+        <h3 v-if="isShow">飞机</h3>
+        
+        <h3 v-if="isShow2 == 1">我是1</h3>
+        <h3 v-else-if="isShow == 2 ">我是2</h3>
+        <h3 v-else-if="isShow2 == 3">我是3</h3>
+        <h3 v-else>我是其他</h3>
+        <!-- template只能跟if 不能和v-show一起  -->
+        <template v-if="isShow">
+            <h3>我是个大牛逼</h3>
+            <h3>我是个废物</h3>
+            <h3>我是对对</h3>
+        </template>
+        <button @click="gaiBian">显示</button>
+        <button @click="isShow2++">isShow2++</button>
+    </div>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'liSi',
+                isShow: false,
+                isShow2:0
+            },
+            methods: {
+                gaiBian() {
+                    this.isShow = !this.isShow
+                },
+               
+            },
+
+        })
+    </script>
+</body>
+
+</html>

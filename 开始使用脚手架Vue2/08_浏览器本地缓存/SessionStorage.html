@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="set()">存储本地缓存</button>
+    <button onclick="get()">获取本地缓存</button>
+
+    <button onclick="rem()">删指令本地缓存</button>
+
+    <script type="text/javascript">
+        function set() {
+            // 只在页面操作中存储数据，页面关于储存的数据将自动销毁
+            SesslonStorage.setItem('name', "张三")
+        }
+        function get() {
+            const a = SesslonStorage.getItem('name')
+            console.log(a);
+        }
+
+        function rem() {
+            SesslonStorage.removeItem('name')
+        }
+        function clear() {
+            SesslonStorage.clear()
+        }  
+    </script>
+</body>
+
+</html>

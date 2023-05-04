@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+				Vue中的事件修饰符：
+						1.prevent：阻止默认事件（常用）；
+						2.stop：阻止事件冒泡（常用）；
+						3.once：事件只触发一次（常用）；
+						4.capture：使用事件的捕获模式；
+						5.self：只有event.target是当前操作的元素时才触发事件；
+						6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕；
+		-->
+		<!-- 准备好一个容器-->
+    <style>
+        .list {
+            width: 500px;
+            height: 300px;
+            background-color: aqua;
+            overflow: auto;
+        }
+        li {
+            width: 400px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <div id="root" >
+        <a href="http://www.baidu.com" @click.prevent="showTost">点击</a>
+
+        <div class="demo" @click="showTost">
+            <button @click.stop="showTost">防止事件冒泡</button>
+        </div>
+
+        <button @click.once="showTost">事情只触发一次</button>
+
+        <div class="deco2" @click.capture="showTost(1)">
+            <button @click="showTost(2)">事件捕获</button>
+        </div>
+
+
+        <ul class="list" @scroll="demo">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el:'#root',
+            data:{},
+            methods:{
+                showTost(a) {
+                    alert("啊啊啊")
+                    console.log(a);
+                },
+                demo(){
+                    console.log("dd");
+                    for(var i=0;i<100000000;i++) {
+                        console.log(i);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

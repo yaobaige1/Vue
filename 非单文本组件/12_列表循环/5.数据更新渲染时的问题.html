@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click="updateSW">更新李四五的数据</button>
+        <div v-for="(item, index) in peopleList" :key="item.id">
+            {{item.name}}---{{item.age}}---{{item.sex}}
+        </div>
+    </div>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                peopleList:[
+                    {id:'001',name:"李四五",age:16,sex:'男'},
+                    {id:'002',name:"李五四",age:17,sex:'男'},
+                    {id:'003',name:"李六七",age:18,sex:'男'},
+                    {id:'004',name:"李七六",age:19,sex:'男'},
+                ],
+            },
+           methods: {
+            updateSW() {
+                // Vue认可 
+                // this.peopleList[0].name = "王白道"
+                // this.peopleList[0].age = 88
+                // this.peopleList[0].sex = '女'
+
+                // vue不认可
+                // this.peopleList[0] = {id:'001',name:"李鸡鸡",age:26,sex:'男'}
+            }
+           },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <button onclick="set()">存储本地缓存</button>
+    <button onclick="get()">获取本地缓存</button>
+
+    <button onclick="rem()">删指令本地缓存</button>
+
+</head>
+
+<body>
+    <script type="text/javascript">
+        function set() {
+            // 储存数据
+            let aaobj = {name:'李四',age:11}
+            localStorage.setItem('name', "张三")
+            localStorage.setItem('aaobj',JSON.stringify(aaobj))
+        }
+        function get() {
+            // 获取数据
+            const a = localStorage.getItem('name')
+            const b = localStorage.getItem('aaobj')
+            console.log(a);
+            console.log(JSON.parse(b));
+        }
+
+        function rem() {
+            // 删除指定储存数据
+            localStorage.removeItem('name')
+        }
+        function clear() {
+            // 删除所有储存数据
+            localStorage.clear()
+        }  
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="inputValue">
+        <ul>
+            <li v-for="(item, index) in filPeopleList" :key="item.id">
+                名字：{{item.name}} ----年龄：{{item.age}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        // const vm = new Vue({
+        //     el:'#root',
+        //     data:{
+        //         peopleList:[
+        //             {id:'001',name:"李四",age:16,sex:'男'},
+        //             {id:'002',name:"李五",age:17,sex:'男'},
+        //             {id:'003',name:"李六",age:18,sex:'男'},
+        //             {id:'004',name:"李七",age:19,sex:'男'},
+        //         ],
+        //         filPeopleList:[],
+        //         inputValue:''
+        //     },
+        //     watch:{
+        //         inputValue:{
+        //             immediate:true,
+        //             handler(value) {
+        //                 this.filPeopleList = this.peopleList.filter((p)=>{
+        //                     return p.name.indexOf(value) != -1
+        //                 })
+        //             }
+        //         }
+        //     }
+        // })
+         const vm = new Vue({
+            el:'#root',
+            data:{
+                peopleList:[
+                    {id:'001',name:"李四",age:16,sex:'男'},
+                    {id:'002',name:"李五",age:17,sex:'男'},
+                    {id:'003',name:"李六",age:18,sex:'男'},
+                    {id:'004',name:"李七",age:19,sex:'男'},
+                ],
+                // filPeopleList:[],
+                inputValue:''
+            },
+            computed:{
+                filPeopleList() {
+                    return this.peopleList.filter((p)=>{
+                        return p.name.indexOf(this.inputValue) != -1
+                    })
+                }
+            }
+         })
+    </script>
+</body>
+</html>

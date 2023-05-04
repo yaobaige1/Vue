@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/js/vue.js"></script>
+    <script src="/js/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        时间是：{{fmtTime}}  </br>
+        时间是：{{getFmtTime()}}  </br>
+        过滤器  时间是：{{time | timeFormater('YYYY-MM-DD') | mySlice}}
+    </div>
+    <div id="root2">
+        {{name | mySlice}}
+        <div :x = "name | mySlice(0,2)">{{name | mySlice(2,6)}}</div>
+    </div>
+    <script type="text/javascript">
+
+
+        // 全局过滤器
+        Vue.filter('mySlice',function(value,startLen = 0,endLen = 4) {
+            return value.slice(startLen,endLen)
+        })
+
+        
+        new Vue({
+            el:'#root',
+            data:{
+                time: 1676637374
+            },
+            computed:{
+                fmtTime() {
+                    return dayjs().format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            methods: {
+                getFmtTime() {
+                    return dayjs().format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            filters:{
+                // 局部过滤器
+                timeFormater(value,str='YYYY-MM-DD HH:mm:ss') {
+                   return dayjs(value).format(str)
+                }
+             
+            }
+        })
+        new Vue({
+            el:'#root2',
+            data:{
+                name:'爱新觉罗普通拉美西斯'
+            }
+        })
+    </script>
+</body>
+</html>
