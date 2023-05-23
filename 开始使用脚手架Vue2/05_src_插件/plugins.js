@@ -4,7 +4,7 @@ export default {
         Vue.filter('mySlice', function (value, startLen = 0, endLen = 4) {
             return value.slice(startLen, endLen)
         })
-        //自定义指令
+        //自定义指令  directive 有指令的意思
         Vue.directive('fbind',{
             inserted(element,binding) {
                 element.value = binding.value
